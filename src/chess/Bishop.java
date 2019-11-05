@@ -2,12 +2,22 @@ package chess;
 
 class Bishop extends Piece {
 
-    boolean isValidMove(Position newPosition) {
-        if (!super.isValidMove(position)) {
-            return false;
-        }
+    public Bishop(Position position, Player owner, Game game) {
+        super(position, owner, game);
+    }
 
-        return Math.abs(newPosition.getCol() - this.position.getCol()) == Math.abs(newPosition.getRow() - this.position.getRow());
+    @Override
+    boolean move(Position newPosition) {
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        if(owner == game.white) {
+            return "♗";
+        } else {
+            return "♝";
+        }
     }
 
 }
