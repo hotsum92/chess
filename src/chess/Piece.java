@@ -23,5 +23,15 @@ abstract class Piece {
         return newPosition.isOutOfBoard();
     }
 
-    abstract boolean move(Position newPosition);
+    boolean move(Position newPosition) {
+        if (!isValidMove(newPosition)) {
+            return false;
+        }
+
+        game.remove(position);
+        game.replace(newPosition, this);
+
+        position = newPosition;
+        return true;
+    }
 }
