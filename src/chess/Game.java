@@ -8,8 +8,10 @@ class Game {
     Player[] players;
 
     Player currentPlayer;
+    Display display;
 
     Game() {
+        display = new Display(this);
         white = new Player("White");
         black = new Player("Black");
 
@@ -99,6 +101,46 @@ class Game {
                     new Rook  (new Position(7, 7), white, this)
                 }
         };
+    }
+
+    void start() {
+
+        while (true) {
+            display.showBoard();
+            var command = display.askCommand();
+
+            if("help".equals(command)) {
+                display.showHelp();
+            }
+
+            if("board".equals(command)) {
+                throw new UnsupportedOperationException();
+            }
+
+            if("resign".equals(command)) {
+                throw new UnsupportedOperationException();
+            }
+
+            if("moves".equals(command)) {
+                throw new UnsupportedOperationException();
+            }
+
+            var from = new UCI(command.substring(0, 2));
+            var to   = new UCI(command.substring(2, 4));
+            if(from.isValid() && to.isValid()) {
+                move(from.toPosition(), to.toPosition());
+            }
+        }
+    }
+
+    boolean move(Position from, Position to) {
+        var piece = pieceAt(from);
+        if(piece.move(to)) {
+            piece.hasMoved = true;
+            togglePlayer();
+            return true;
+        }
+        return false;
     }
 
     void remove(Position position) {
