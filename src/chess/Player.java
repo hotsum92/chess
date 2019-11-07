@@ -10,4 +10,9 @@ public class Player {
     public boolean has(Piece p) {
         return p.owner == this;
     }
+
+    @Override
+    public String toString() {
+        return color;
+    }
 }
