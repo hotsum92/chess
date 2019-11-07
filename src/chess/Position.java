@@ -67,4 +67,12 @@ class Position {
     public String toString() {
         return "row: " + row + " col: " + col;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        if(!(object instanceof Position)) return false;
+        var position = (Position)object;
+        if(row == position.row && col == position.col) return true;
+        return false;
+    }
 }
