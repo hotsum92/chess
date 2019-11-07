@@ -31,12 +31,14 @@ class Pawn extends Piece {
 
     boolean canMoveOneStepForward(Position newPosition) {
         return newPosition.isForward(position, game)
+                && newPosition.isVetical(position)
                 && position.verticalDistanceTo(newPosition) == 1
                 && game.pieceAt(newPosition).isEmpty;
     }
 
     boolean canMoveTwoStepForward(Position newPosition) {
         return newPosition.isForward(position, game)
+                && newPosition.isVetical(position)
                 && position.verticalDistanceTo(newPosition) == 2
                 && game.pieceAt(newPosition).isEmpty
                 && !game.pieceExistsBetween(position, newPosition)
