@@ -1,8 +1,5 @@
 package chess;
 
-import javax.swing.plaf.synth.SynthToolTipUI;
-import java.net.StandardProtocolFamily;
-
 class GameHelper {
     static Position center = new Position(2,2);
 

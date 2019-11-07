@@ -2,7 +2,7 @@ package chess;
 
 class Rook extends Piece {
 
-    public Rook(Position position, Player owner, Game game) {
+    Rook(Position position, Player owner, Game game) {
         super(position, owner, game);
     }
 

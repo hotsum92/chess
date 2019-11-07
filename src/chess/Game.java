@@ -1,7 +1,5 @@
 package chess;
 
-import javax.sound.midi.SysexMessage;
-
 class Game {
     Empty empty;
     Piece[][] board;

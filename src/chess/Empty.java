@@ -1,8 +1,8 @@
 package chess;
 
-public class Empty extends Piece {
+class Empty extends Piece {
 
-    public Empty() {
+    Empty() {
         super(null, null, null, true);
     }
 

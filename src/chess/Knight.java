@@ -2,7 +2,7 @@ package chess;
 
 class Knight extends Piece {
 
-    public Knight(Position position, Player owner, Game game) {
+    Knight(Position position, Player owner, Game game) {
         super(position, owner, game);
     }
 

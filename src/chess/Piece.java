@@ -1,8 +1,5 @@
 package chess;
 
-import javax.sql.PooledConnection;
-import javax.swing.text.StyledEditorKit;
-
 abstract class Piece {
     Game game;
     Player owner;
@@ -10,7 +7,7 @@ abstract class Piece {
     boolean isEmpty;
     boolean hasMoved;
 
-    public Piece(Position position, Player owner, Game game, boolean isEmpty) {
+    Piece(Position position, Player owner, Game game, boolean isEmpty) {
         this.position = position;
         this.game = game;
         this.owner = owner;
@@ -18,7 +15,7 @@ abstract class Piece {
         hasMoved = false;
     }
 
-    public Piece(Position position, Player owner, Game game) {
+    Piece(Position position, Player owner, Game game) {
         this(position, owner, game,false);
     }
 

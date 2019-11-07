@@ -2,7 +2,7 @@ package chess;
 
 class Bishop extends Piece {
 
-    public Bishop(Position position, Player owner, Game game) {
+    Bishop(Position position, Player owner, Game game) {
         super(position, owner, game);
     }
 

@@ -2,7 +2,7 @@ package chess;
 
 class Pawn extends Piece {
 
-    public Pawn(Position position, Player owner, Game game) {
+    Pawn(Position position, Player owner, Game game) {
         super(position, owner, game);
     }
 

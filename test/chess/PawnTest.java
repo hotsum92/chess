@@ -1,12 +1,11 @@
 package chess;
 
-import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.*;
 import org.junit.jupiter.params.provider.*;
-
-import java.util.stream.Stream;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.*;
+
+import java.util.stream.Stream;
 
 import static chess.GameHelper.*;
 
