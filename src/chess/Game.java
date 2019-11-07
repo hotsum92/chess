@@ -91,14 +91,14 @@ class Game {
                     new Pawn  (new Position(6, 7), white, this)
                 },
                 {
-                    new Rook  (new Position(0, 0), white, this),
-                    new Knight(new Position(0, 1), white, this),
-                    new Bishop(new Position(0, 2), white, this),
-                    new King  (new Position(0, 3), white, this),
-                    new Queen (new Position(0, 4), white, this),
-                    new Bishop(new Position(0, 5), white, this),
-                    new Knight(new Position(0, 6), white, this),
-                    new Rook  (new Position(0, 7), white, this)
+                    new Rook  (new Position(7, 0), white, this),
+                    new Knight(new Position(7, 1), white, this),
+                    new Bishop(new Position(7, 2), white, this),
+                    new King  (new Position(7, 3), white, this),
+                    new Queen (new Position(7, 4), white, this),
+                    new Bishop(new Position(7, 5), white, this),
+                    new Knight(new Position(7, 6), white, this),
+                    new Rook  (new Position(7, 7), white, this)
                 }
         };
     }
