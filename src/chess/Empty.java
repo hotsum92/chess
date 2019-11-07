@@ -8,7 +8,7 @@ class Empty extends Piece {
 
     @Override
     boolean move(Position newPosition) {
-        throw new UnsupportedOperationException();
+        return false;
     }
 
     @Override
