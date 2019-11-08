@@ -16,7 +16,7 @@ abstract class Piece {
     }
 
     Piece(Position position, Player owner, Board board) {
-        this(position, owner, board,false);
+        this(position, owner, board, false);
     }
 
     boolean canMoveTo(Position newPosition) {
