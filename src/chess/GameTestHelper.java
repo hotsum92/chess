@@ -1,12 +1,12 @@
 package chess;
 
-import static chess.Game.*;
+import static chess.Board.*;
 
 class GameTestHelper {
     static Position center = new Position(2,2);
 
     static void DisplayTestConsole() {
-        var game = new Game();
+        var game = new Board();
         var board = emptyBoard();
         board[center.row][center.col] = new Queen(new Position(center.row, center.col), white, game);
         game.board = board;
@@ -39,15 +39,15 @@ class GameTestHelper {
         return board;
     }
 
-    static Game oneFriendBoardWith(Piece piece) {
-        var game = new Game();
-        piece.game = game;
+    static Board oneFriendBoardWith(Piece piece) {
+        var game = new Board();
+        piece.board = game;
         game.board = emptyBoard();
         game.board[piece.position.row][piece.position.col] = piece;
         return game;
     }
 
-    static Game oneFriendOneEnemyBoardWith(Piece friend, Piece enemy) {
+    static Board oneFriendOneEnemyBoardWith(Piece friend, Piece enemy) {
         var game = oneFriendBoardWith(friend);
         game.board[enemy.position.row][enemy.position.col] = enemy;
         return game;

@@ -1,5 +1,7 @@
 package chess;
 
+import static chess.Board.*;
+
 class Position {
 
     int row;
@@ -42,8 +44,8 @@ class Position {
         return row > position.row;
     }
 
-    boolean isForward(Position position, Game game) {
-        if(game.currentPlayer == Game.white) {
+    boolean isForward(Position position, Board board) {
+        if(board.currentPlayer == white) {
             return row < position.row;
         } else {
             return row > position.row;

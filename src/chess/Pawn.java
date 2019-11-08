@@ -1,11 +1,11 @@
 package chess;
 
-import static chess.Game.*;
+import static chess.Board.*;
 
 class Pawn extends Piece {
 
-    Pawn(Position position, Player owner, Game game) {
-        super(position, owner, game);
+    Pawn(Position position, Player owner, Board board) {
+        super(position, owner, board);
     }
 
     @Override
@@ -21,8 +21,8 @@ class Pawn extends Piece {
             // TODO: implement En Passant
             // TODO: implement Promotion
 
-            game.remove(position);
-            game.replace(newPosition, this);
+            board.remove(position);
+            board.replace(newPosition, this);
 
             position = newPosition;
             return true;
@@ -32,25 +32,25 @@ class Pawn extends Piece {
     }
 
     boolean canMoveOneStepForward(Position newPosition) {
-        return newPosition.isForward(position, game)
+        return newPosition.isForward(position, board)
                 && newPosition.isVetical(position)
                 && position.verticalDistanceTo(newPosition) == 1
-                && game.pieceAt(newPosition).isEmpty;
+                && board.pieceAt(newPosition).isEmpty;
     }
 
     boolean canMoveTwoStepForward(Position newPosition) {
-        return newPosition.isForward(position, game)
+        return newPosition.isForward(position, board)
                 && newPosition.isVetical(position)
                 && position.verticalDistanceTo(newPosition) == 2
-                && game.pieceAt(newPosition).isEmpty
-                && !game.pieceExistsBetween(position, newPosition)
+                && board.pieceAt(newPosition).isEmpty
+                && !board.pieceExistsBetween(position, newPosition)
                 && !hasMoved;
     }
 
     boolean canMoveOneStepDiagonally(Position newPosition) {
-        var piece = game.pieceAt(newPosition);
+        var piece = board.pieceAt(newPosition);
         return position.isDiagonal(newPosition)
-                && newPosition.isForward(position, game)
+                && newPosition.isForward(position, board)
                 && position.verticalDistanceTo(newPosition) == 1
                 && !piece.isEmpty
                 && !owner.has(piece);

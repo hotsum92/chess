@@ -1,11 +1,11 @@
 package chess;
 
-import static chess.Game.*;
+import static chess.Board.*;
 
 class Rook extends Piece {
 
-    Rook(Position position, Player owner, Game game) {
-        super(position, owner, game);
+    Rook(Position position, Player owner, Board board) {
+        super(position, owner, board);
     }
 
     @Override

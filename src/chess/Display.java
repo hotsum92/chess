@@ -3,11 +3,11 @@ package chess;
 class Display {
 
     Console console;
-    Game game;
+    Board board;
 
-    Display(Game game) {
+    Display(Board board) {
         console = new Console();
-        this.game = game;
+        this.board = board;
     }
 
     void showBoard() {
@@ -15,7 +15,7 @@ class Display {
         String[] colNumber = { "a", "b", "c", "d", "e", "f", "g", "h" };
         var str = "";
 
-        var board = game.board;
+        var board = this.board.board;
         var firstIndex = rowNumber.length - board.length;
         for(int row = firstIndex; row < rowNumber.length; ++row) {
             for(int col = firstIndex; col < colNumber.length; ++col) {
@@ -32,7 +32,7 @@ class Display {
         }
 
         str += "\n\n";
-        str += game.currentPlayer.color + " to move\n";
+        str += this.board.currentPlayer.color + " to move\n";
 
         console.show(str);
     }

@@ -1,22 +1,22 @@
 package chess;
 
 abstract class Piece {
-    Game game;
+    Board board;
     Player owner;
     Position position;
     boolean isEmpty;
     boolean hasMoved;
 
-    Piece(Position position, Player owner, Game game, boolean isEmpty) {
+    Piece(Position position, Player owner, Board board, boolean isEmpty) {
         this.position = position;
-        this.game = game;
+        this.board = board;
         this.owner = owner;
         this.isEmpty = isEmpty;
         hasMoved = false;
     }
 
-    Piece(Position position, Player owner, Game game) {
-        this(position, owner, game,false);
+    Piece(Position position, Player owner, Board board) {
+        this(position, owner, board,false);
     }
 
     boolean isValidMove(Position newPosition) {
@@ -28,8 +28,8 @@ abstract class Piece {
             return false;
         }
 
-        game.remove(position);
-        game.replace(newPosition, this);
+        board.remove(position);
+        board.replace(newPosition, this);
 
         position = newPosition;
         return true;
