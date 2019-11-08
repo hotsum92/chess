@@ -125,6 +125,19 @@ class Board {
         return pieces[position.row][position.col];
     }
 
+    boolean isForward(Position from, Position to) {
+        if(currentPlayer == white) {
+            return from.row < to.row;
+        } else {
+            return from.row > to.row;
+        }
+    }
+
+    boolean isOutOfBoardAt(Position position) {
+        return position.row >= 0 && position.col >= 0
+                && position.row < pieces.length && position.col < pieces.length;
+    }
+
     boolean pieceExistsBetween(Position from, Position to) {
 
         if(to.isCross(from)) {

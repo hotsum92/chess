@@ -20,7 +20,7 @@ abstract class Piece {
     }
 
     boolean canMoveTo(Position newPosition) {
-        return newPosition.isOutOfBoard();
+        return board.isOutOfBoardAt(newPosition);
     }
 
     void move(Position newPosition) {

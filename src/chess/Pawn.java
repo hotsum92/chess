@@ -23,14 +23,14 @@ class Pawn extends Piece {
     }
 
     boolean canMoveOneStepForward(Position newPosition) {
-        return newPosition.isForward(position, board)
+        return board.isForward(newPosition ,position)
                 && newPosition.isVetical(position)
                 && position.verticalDistanceTo(newPosition) == 1
                 && board.pieceAt(newPosition).isEmpty;
     }
 
     boolean canMoveTwoStepForward(Position newPosition) {
-        return newPosition.isForward(position, board)
+        return board.isForward(newPosition ,position)
                 && newPosition.isVetical(position)
                 && position.verticalDistanceTo(newPosition) == 2
                 && board.pieceAt(newPosition).isEmpty
@@ -41,7 +41,7 @@ class Pawn extends Piece {
     boolean canMoveOneStepDiagonally(Position newPosition) {
         var piece = board.pieceAt(newPosition);
         return position.isDiagonal(newPosition)
-                && newPosition.isForward(position, board)
+                && board.isForward(newPosition ,position)
                 && position.verticalDistanceTo(newPosition) == 1
                 && !piece.isEmpty
                 && !owner.has(piece);

@@ -44,25 +44,12 @@ class Position {
         return row > position.row;
     }
 
-    boolean isForward(Position position, Board board) {
-        if(board.currentPlayer == white) {
-            return row < position.row;
-        } else {
-            return row > position.row;
-        }
-    }
-
     int verticalDistanceTo(Position position) {
         return Math.abs(row - position.row);
     }
 
     int horizontalDistanceTo(Position position) {
         return Math.abs(col - position.col);
-    }
-
-    boolean isOutOfBoard() {
-        return row >= 0 && col >= 0
-                && row <= 8 && col <= 8;
     }
 
     @Override
