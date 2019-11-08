@@ -1,23 +1,21 @@
 package chess;
 
-class Game {
-    Empty empty;
-    Piece[][] board;
-    Player white;
-    Player black;
-    Player[] players;
+import static chess.GameHelper.*;
 
+class Game {
+    static final Empty empty = new Empty();
+    static final Player white = new Player("White");
+    static final Player black = new Player("Black");
+    static final Player[] players = new Player[] { white, black };
+
+    Piece[][] board;
     Player currentPlayer;
     Display display;
 
     Game() {
         display = new Display(this);
-        white = new Player("White");
-        black = new Player("Black");
 
-        players = new Player[]{ white, black };
         currentPlayer = white;
-        empty = new Empty();
 
         board = new Piece[][] {
                 {
@@ -123,6 +121,10 @@ class Game {
 
             if("moves".equals(command)) {
                 throw new UnsupportedOperationException();
+            }
+
+            if("test".equals(command)) {
+                DisplayTestConsole(display);
             }
 
             var from = new UCI(command.substring(0, 2));

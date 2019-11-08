@@ -7,11 +7,6 @@ class Queen extends Piece {
     }
 
     @Override
-    boolean move(Position newPosition) {
-        return false;
-    }
-
-    @Override
     public String toString() {
         if(owner == game.white) {
             return "♕";
