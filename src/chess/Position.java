@@ -55,7 +55,7 @@ class Position {
     }
 
     int horizontalDistanceTo(Position position) {
-        return Math.abs(col - position.row);
+        return Math.abs(col - position.col);
     }
 
     boolean isOutOfBoard() {
