@@ -8,20 +8,21 @@ import static org.junit.jupiter.params.provider.Arguments.*;
 
 import java.util.stream.*;
 
+import static chess.Board.*;
 import static chess.GameTestHelper.*;
 
 class BoardTest {
 
     @Test
     void displayBoard() {
-        var game = new Board();
-        System.out.println(game);
+        var board = new Board();
+        System.out.println(board);
     }
 
     @Test
     void whitePlayerStartsFirst() {
-        var game = new Board();
-        assertEquals(Board.white,game.currentPlayer);
+        var board = new Board();
+        assertEquals(white , board.currentPlayer);
     }
 
     @ParameterizedTest
@@ -46,13 +47,13 @@ class BoardTest {
                 arguments(new Position(3, 2), false, fullPieceBoard),
                 arguments(new Position(3, 3), false, fullPieceBoard),
 
-                arguments(new Position(0, 2), true, oneFriendBoardWith(new Pawn(new Position(1, 2), Board.white, null))),
-                arguments(new Position(0, 4), true, oneFriendBoardWith(new Pawn(new Position(1, 3), Board.white, null))),
-                arguments(new Position(2, 0), true, oneFriendBoardWith(new Pawn(new Position(2, 1), Board.white, null))),
-                arguments(new Position(2, 4), true, oneFriendBoardWith(new Pawn(new Position(2, 3), Board.white, null))),
-                arguments(new Position(4, 0), true, oneFriendBoardWith(new Pawn(new Position(3, 1), Board.white, null))),
-                arguments(new Position(4, 2), true, oneFriendBoardWith(new Pawn(new Position(3, 2), Board.white, null))),
-                arguments(new Position(4, 4), true, oneFriendBoardWith(new Pawn(new Position(3, 3), Board.white, null))),
+                arguments(new Position(0, 2), true, oneFriendBoardWith(new Pawn(new Position(1, 2), white, null))),
+                arguments(new Position(0, 4), true, oneFriendBoardWith(new Pawn(new Position(1, 3), white, null))),
+                arguments(new Position(2, 0), true, oneFriendBoardWith(new Pawn(new Position(2, 1), white, null))),
+                arguments(new Position(2, 4), true, oneFriendBoardWith(new Pawn(new Position(2, 3), white, null))),
+                arguments(new Position(4, 0), true, oneFriendBoardWith(new Pawn(new Position(3, 1), white, null))),
+                arguments(new Position(4, 2), true, oneFriendBoardWith(new Pawn(new Position(3, 2), white, null))),
+                arguments(new Position(4, 4), true, oneFriendBoardWith(new Pawn(new Position(3, 3), white, null))),
 
                 arguments(new Position(0, 0), false, oneEmptyBoard(new Position(1, 1))),
                 arguments(new Position(0, 2), false, oneEmptyBoard(new Position(1, 2))),
@@ -66,50 +67,50 @@ class BoardTest {
     }
 
     static Board oneEmptyBoard(Position position) {
-        var game = fullPawnBoard();
-        game.board[position.row][position.col] = Board.empty;
-        return game;
+        var board = fullPawnBoard();
+        board.pieces[position.row][position.col] = Board.empty;
+        return board;
     }
     static Board fullPawnBoard() {
-        var game = new Board();
-        game.board = new Piece[][]{
+        var board = new Board();
+        board.pieces = new Piece[][]{
                 {
-                        new Pawn(new Position(0, 0), Board.white, game),
-                        new Pawn(new Position(0, 1), Board.white, game),
-                        new Pawn(new Position(0, 2), Board.white, game),
-                        new Pawn(new Position(0, 3), Board.white, game),
-                        new Pawn(new Position(0, 4), Board.white, game)
+                        new Pawn(new Position(0, 0), white, board),
+                        new Pawn(new Position(0, 1), white, board),
+                        new Pawn(new Position(0, 2), white, board),
+                        new Pawn(new Position(0, 3), white, board),
+                        new Pawn(new Position(0, 4), white, board)
                 },
                 {
-                        new Pawn(new Position(1, 0), Board.white, game),
-                        new Pawn(new Position(1, 1), Board.white, game),
-                        new Pawn(new Position(1, 2), Board.white, game),
-                        new Pawn(new Position(1, 3), Board.white, game),
-                        new Pawn(new Position(1, 4), Board.white, game)
+                        new Pawn(new Position(1, 0), white, board),
+                        new Pawn(new Position(1, 1), white, board),
+                        new Pawn(new Position(1, 2), white, board),
+                        new Pawn(new Position(1, 3), white, board),
+                        new Pawn(new Position(1, 4), white, board)
                 },
                 {
-                        new Pawn(new Position(2, 0), Board.white, game),
-                        new Pawn(new Position(2, 1), Board.white, game),
-                        new Pawn(new Position(2, 2), Board.white, game),
-                        new Pawn(new Position(2, 3), Board.white, game),
-                        new Pawn(new Position(2, 4), Board.white, game)
+                        new Pawn(new Position(2, 0), white, board),
+                        new Pawn(new Position(2, 1), white, board),
+                        new Pawn(new Position(2, 2), white, board),
+                        new Pawn(new Position(2, 3), white, board),
+                        new Pawn(new Position(2, 4), white, board)
                 },
                 {
-                        new Pawn(new Position(3, 0), Board.white, game),
-                        new Pawn(new Position(3, 1), Board.white, game),
-                        new Pawn(new Position(3, 2), Board.white, game),
-                        new Pawn(new Position(3, 3), Board.white, game),
-                        new Pawn(new Position(3, 4), Board.white, game)
+                        new Pawn(new Position(3, 0), white, board),
+                        new Pawn(new Position(3, 1), white, board),
+                        new Pawn(new Position(3, 2), white, board),
+                        new Pawn(new Position(3, 3), white, board),
+                        new Pawn(new Position(3, 4), white, board)
                 },
                 {
-                        new Pawn(new Position(4, 0), Board.white, game),
-                        new Pawn(new Position(4, 1), Board.white, game),
-                        new Pawn(new Position(4, 2), Board.white, game),
-                        new Pawn(new Position(4, 3), Board.white, game),
-                        new Pawn(new Position(4, 4), Board.white, game)
+                        new Pawn(new Position(4, 0), white, board),
+                        new Pawn(new Position(4, 1), white, board),
+                        new Pawn(new Position(4, 2), white, board),
+                        new Pawn(new Position(4, 3), white, board),
+                        new Pawn(new Position(4, 4), white, board)
                 }
         };
 
-        return game;
+        return board;
     }
 }

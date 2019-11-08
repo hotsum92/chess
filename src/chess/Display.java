@@ -15,7 +15,7 @@ class Display {
         String[] colNumber = { "a", "b", "c", "d", "e", "f", "g", "h" };
         var str = "";
 
-        var board = this.board.board;
+        var board = this.board.pieces;
         var firstIndex = rowNumber.length - board.length;
         for(int row = firstIndex; row < rowNumber.length; ++row) {
             for(int col = firstIndex; col < colNumber.length; ++col) {

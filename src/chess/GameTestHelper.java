@@ -6,10 +6,9 @@ class GameTestHelper {
     static Position center = new Position(2,2);
 
     static void DisplayTestConsole() {
-        var game = new Board();
         var board = emptyBoard();
-        board[center.row][center.col] = new Queen(new Position(center.row, center.col), white, game);
-        game.board = board;
+        board.pieces[center.row][center.col] = new Queen(new Position(center.row, center.col), white, board);
+        var game = new Game(board);
         game.start();
     }
 
@@ -29,28 +28,28 @@ class GameTestHelper {
         return center.col - steps;
     }
 
-    static Piece[][] emptyBoard() {
-        var board = new Piece[5][5];
+    static Board emptyBoard() {
+        var pieces = new Piece[5][5];
         for(int row = 0; row < 5; ++row) {
             for(int col = 0; col < 5; ++col) {
-                board[row][col] = empty;
+                pieces[row][col] = empty;
             }
         }
-        return board;
+        return new Board(pieces);
     }
 
     static Board oneFriendBoardWith(Piece piece) {
-        var game = new Board();
-        piece.board = game;
-        game.board = emptyBoard();
-        game.board[piece.position.row][piece.position.col] = piece;
-        return game;
+        var board = emptyBoard();
+        piece.board = board;
+        board.pieces[piece.position.row][piece.position.col] = piece;
+        return board;
     }
 
     static Board oneFriendOneEnemyBoardWith(Piece friend, Piece enemy) {
-        var game = oneFriendBoardWith(friend);
-        game.board[enemy.position.row][enemy.position.col] = enemy;
-        return game;
+        var board = oneFriendBoardWith(friend);
+        enemy.board = board;
+        board.pieces[enemy.position.row][enemy.position.col] = enemy;
+        return board;
     }
 
 }
