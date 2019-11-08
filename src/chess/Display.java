@@ -15,11 +15,11 @@ class Display {
         String[] colNumber = { "a", "b", "c", "d", "e", "f", "g", "h" };
         var str = "";
 
-        var array = game.board;
-
-        for(int row = 0; row < array.length; ++row) {
-            for(int col = 0; col < array[0].length; ++col) {
-                str += array[row][col];
+        var board = game.board;
+        var firstIndex = rowNumber.length - board.length;
+        for(int row = firstIndex; row < rowNumber.length; ++row) {
+            for(int col = firstIndex; col < colNumber.length; ++col) {
+                str += board[row - firstIndex][col - firstIndex];
             }
             str += " " + rowNumber[row] + "\n";
         }
@@ -27,7 +27,7 @@ class Display {
         str += "\n";
 
         str += colNumber[0];
-        for(int col = 1; col < array[0].length; ++col) {
+        for(int col = 1; col < board.length; ++col) {
             str += " " + colNumber[col];
         }
 

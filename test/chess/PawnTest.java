@@ -7,7 +7,7 @@ import static org.junit.jupiter.params.provider.Arguments.*;
 
 import java.util.stream.Stream;
 
-import static chess.GameHelper.*;
+import static chess.GameTestHelper.*;
 
 class PawnTest {
 
@@ -25,26 +25,20 @@ class PawnTest {
     static Stream<Arguments> pawnMovesSource() {
 
         return Stream.of(
-                arguments(new Position(forward(1),  center.col), true,  onePawnBoardOn(center)),
-                arguments(new Position(forward(1),  left(1)),    false, onePawnBoardOn(center)),
-                arguments(new Position(forward(1),  right(1)),   false, onePawnBoardOn(center)),
-                arguments(new Position(center.row,  left(1)),    false, onePawnBoardOn(center)),
-                arguments(new Position(center.row,  left(1)),    false, onePawnBoardOn(center)),
-                arguments(new Position(backward(1), center.col), false, onePawnBoardOn(center)),
-                arguments(new Position(backward(1), right(1)),   false, onePawnBoardOn(center)),
-                arguments(new Position(backward(1), left(1)),    false, onePawnBoardOn(center)),
-                arguments(new Position(forward(2),  center.col), true,  onePawnBoardOn(center)),
-                arguments(new Position(backward(2), center.col), false, onePawnBoardOn(center)),
-                arguments(new Position(forward(3),  center.col), false, onePawnBoardOn(center)),
+                arguments(new Position(forward(1),  center.col), true,  oneFriendBoardWith(new Pawn(center, Game.white, null))),
+                arguments(new Position(forward(1),  left(1)),    false, oneFriendBoardWith(new Pawn(center, Game.white, null))),
+                arguments(new Position(forward(1),  right(1)),   false, oneFriendBoardWith(new Pawn(center, Game.white, null))),
+                arguments(new Position(center.row,  left(1)),    false, oneFriendBoardWith(new Pawn(center, Game.white, null))),
+                arguments(new Position(center.row,  left(1)),    false, oneFriendBoardWith(new Pawn(center, Game.white, null))),
+                arguments(new Position(backward(1), center.col), false, oneFriendBoardWith(new Pawn(center, Game.white, null))),
+                arguments(new Position(backward(1), right(1)),   false, oneFriendBoardWith(new Pawn(center, Game.white, null))),
+                arguments(new Position(backward(1), left(1)),    false, oneFriendBoardWith(new Pawn(center, Game.white, null))),
+                arguments(new Position(forward(2),  center.col), true,  oneFriendBoardWith(new Pawn(center, Game.white, null))),
+                arguments(new Position(backward(2), center.col), false, oneFriendBoardWith(new Pawn(center, Game.white, null))),
+                arguments(new Position(forward(3),  center.col), false, oneFriendBoardWith(new Pawn(center, Game.white, null))),
 
-                arguments(new Position(forward(1), right(1)), true, oneFriendOneEnemyBoardOn(center, new Position(forward(1), right(1)))),
-                arguments(new Position(forward(1), left(1)),  true, oneFriendOneEnemyBoardOn(center, new Position(forward(1), left(1))))
+                arguments(new Position(forward(1), right(1)), true, oneFriendOneEnemyBoardWith(new Pawn(center, Game.white, null), new Pawn(new Position(forward(1), right(1)), Game.black, null))),
+                arguments(new Position(forward(1), left(1)),  true, oneFriendOneEnemyBoardWith(new Pawn(center, Game.white, null), new Pawn(new Position(forward(1), left(1)),  Game.black, null)))
         );
-    }
-
-    static Game oneFriendOneEnemyBoardOn(Position friend, Position enemy) {
-        var game = onePawnBoardOn(friend);
-        game.board[enemy.row][enemy.col] = new Pawn(enemy, game.black, game);
-        return game;
     }
 }

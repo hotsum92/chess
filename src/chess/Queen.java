@@ -1,5 +1,7 @@
 package chess;
 
+import static chess.Game.*;
+
 class Queen extends Piece {
 
     Queen(Position position, Player owner, Game game) {
@@ -7,13 +9,8 @@ class Queen extends Piece {
     }
 
     @Override
-    boolean move(Position newPosition) {
-        return false;
-    }
-
-    @Override
     public String toString() {
-        if(owner == game.white) {
+        if(owner == white) {
             return "♕";
         } else {
             return "♛";

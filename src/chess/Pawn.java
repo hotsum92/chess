@@ -1,5 +1,7 @@
 package chess;
 
+import static chess.Game.*;
+
 class Pawn extends Piece {
 
     Pawn(Position position, Player owner, Game game) {
@@ -56,7 +58,7 @@ class Pawn extends Piece {
 
     @Override
     public String toString() {
-        if(owner == game.white) {
+        if(owner == white) {
             return "♙";
         } else {
             return "♟";

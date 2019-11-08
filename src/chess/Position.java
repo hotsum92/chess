@@ -43,7 +43,7 @@ class Position {
     }
 
     boolean isForward(Position position, Game game) {
-        if(game.currentPlayer == game.white) {
+        if(game.currentPlayer == Game.white) {
             return row < position.row;
         } else {
             return row > position.row;
@@ -72,7 +72,6 @@ class Position {
     public boolean equals(Object object) {
         if(!(object instanceof Position)) return false;
         var position = (Position)object;
-        if(row == position.row && col == position.col) return true;
-        return false;
+        return row == position.row && col == position.col;
     }
 }
