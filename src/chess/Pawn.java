@@ -9,26 +9,17 @@ class Pawn extends Piece {
     }
 
     @Override
-    boolean move(Position newPosition) {
-        if(!super.isValidMove(newPosition)) {
+    boolean canMoveTo(Position newPosition) {
+        if(!super.canMoveTo(newPosition)) {
             return false;
         }
 
-        if(canMoveOneStepForward(newPosition)
+        // TODO: implement En Passant
+        // TODO: implement Promotion
+
+        return canMoveOneStepForward(newPosition)
                 || canMoveTwoStepForward(newPosition)
-                || canMoveOneStepDiagonally(newPosition)) {
-
-            // TODO: implement En Passant
-            // TODO: implement Promotion
-
-            board.remove(position);
-            board.replace(newPosition, this);
-
-            position = newPosition;
-            return true;
-        }
-
-        return false;
+                || canMoveOneStepDiagonally(newPosition);
     }
 
     boolean canMoveOneStepForward(Position newPosition) {

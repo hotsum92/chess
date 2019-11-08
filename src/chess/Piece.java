@@ -19,19 +19,18 @@ abstract class Piece {
         this(position, owner, board,false);
     }
 
-    boolean isValidMove(Position newPosition) {
+    boolean canMoveTo(Position newPosition) {
         return newPosition.isOutOfBoard();
     }
 
-    boolean move(Position newPosition) {
-        if (!isValidMove(newPosition)) {
-            return false;
+    void move(Position newPosition) {
+        if (!canMoveTo(newPosition)) {
+            return;
         }
 
         board.remove(position);
         board.replace(newPosition, this);
 
         position = newPosition;
-        return true;
     }
 }

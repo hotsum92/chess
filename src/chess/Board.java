@@ -102,7 +102,8 @@ class Board {
 
     void move(Position from, Position to) {
         var piece = pieceAt(from);
-        if(piece.move(to)) {
+        if(piece.canMoveTo(to)) {
+            piece.move(to);
             piece.hasMoved = true;
             togglePlayer();
         }

@@ -7,7 +7,7 @@ class Empty extends Piece {
     }
 
     @Override
-    boolean move(Position newPosition) {
+    boolean canMoveTo(Position newPosition) {
         return false;
     }
 
