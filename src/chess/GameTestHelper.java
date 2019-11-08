@@ -5,13 +5,6 @@ import static chess.Board.*;
 class GameTestHelper {
     static Position center = new Position(2,2);
 
-    static void DisplayTestConsole() {
-        var board = emptyBoard();
-        board.pieces[center.row][center.col] = new Queen(new Position(center.row, center.col), white, board);
-        var game = new Game(board);
-        game.start();
-    }
-
     static int forward(int steps) {
         return center.row - steps;
     }

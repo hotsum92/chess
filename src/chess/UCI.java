@@ -9,10 +9,12 @@ class UCI {
     static String[] colIndex = { "a", "b", "c", "d", "e", "f", "g", "h" };
 
     String string;
+    int offset;
 
     UCI(String string) {
         this.string = string;
     }
+    UCI(String string, int offset) { this(string); this.offset = offset;}
 
     boolean isValid() {
         return true;
@@ -25,7 +27,7 @@ class UCI {
         var position = new Position(0, 0);
         for(int i = 0; i < rowIndex.length; ++i) {
             if (rowIndex[i].equals(row)) {
-                position.row = i;
+                position.row = i - offset;
                 break;
             }
         }

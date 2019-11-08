@@ -1,38 +1,36 @@
 package chess;
 
+import static chess.UCI.*;
+
 class Display {
 
     Console console;
-    Board board;
 
-    Display(Board board) {
+    Display() {
         console = new Console();
-        this.board = board;
     }
 
-    void showBoard() {
-        String[] rowNumber = { "8", "7", "6", "5", "4", "3", "2", "1" };
-        String[] colNumber = { "a", "b", "c", "d", "e", "f", "g", "h" };
+    void show(Board board) {
         var str = "";
 
-        var board = this.board.pieces;
-        var firstIndex = rowNumber.length - board.length;
-        for(int row = firstIndex; row < rowNumber.length; ++row) {
-            for(int col = firstIndex; col < colNumber.length; ++col) {
-                str += board[row - firstIndex][col - firstIndex];
+        var pieces = board.pieces;
+        var firstIndex = rowIndex.length - pieces.length;
+        for(int row = firstIndex; row < rowIndex.length; ++row) {
+            for(int col = firstIndex; col < colIndex.length; ++col) {
+                str += pieces[row - firstIndex][col - firstIndex];
             }
-            str += " " + rowNumber[row] + "\n";
+            str += " " + rowIndex[row] + "\n";
         }
 
         str += "\n";
 
-        str += colNumber[0];
-        for(int col = 1; col < board.length; ++col) {
-            str += " " + colNumber[col];
+        str += colIndex[0];
+        for(int col = 1; col < pieces.length; ++col) {
+            str += " " + colIndex[col];
         }
 
         str += "\n\n";
-        str += this.board.currentPlayer.color + " to move\n";
+        str += board.currentPlayer.color + " to move\n";
 
         console.show(str);
     }
@@ -49,6 +47,16 @@ class Display {
 
     String askCommand() {
         console.show("Enter UCI (type 'help' for help):");
+        return console.read();
+    }
+
+    String askTestCommand() {
+        console.show("Enter UCI (test mode):");
+        return console.read();
+    }
+
+    String askPiece() {
+        console.show("Select piece(1:king 2:rook 3:bishop 4:queen 5:knight 6:pawn):");
         return console.read();
     }
 }

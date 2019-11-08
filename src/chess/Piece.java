@@ -24,10 +24,6 @@ abstract class Piece {
     }
 
     void move(Position newPosition) {
-        if (!canMoveTo(newPosition)) {
-            return;
-        }
-
         board.remove(position);
         board.replace(newPosition, this);
 
