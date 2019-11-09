@@ -1,7 +1,5 @@
 package chess;
 
-import java.util.SplittableRandom;
-
 import static chess.GameTestHelper.*;
 import static chess.Board.*;
 
