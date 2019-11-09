@@ -99,13 +99,17 @@ class Board {
         };
     }
 
-    void move(Position from, Position to) {
+    boolean currentPlayerHasPieceAt(Position position) {
+        var piece = pieceAt(position);
+        return piece.owner == currentPlayer;
+    }
+
+    boolean move(Position from, Position to) {
         var piece = pieceAt(from);
-        if(piece.canMoveTo(to)) {
-            piece.move(to);
-            piece.hasMoved = true;
-            togglePlayer();
-        }
+        if(!piece.canMoveTo(to)) return false;
+        piece.move(to);
+        piece.hasMoved = true;
+        return true;
     }
 
     void remove(Position position) {
@@ -114,10 +118,6 @@ class Board {
 
     void replace(Position position, Piece piece) {
         pieces[position.row][position.col] = piece;
-    }
-
-    void togglePlayer() {
-        currentPlayer = players[0].equals(currentPlayer) ? players[1] : players[0];
     }
 
     Piece pieceAt(Position position) {
