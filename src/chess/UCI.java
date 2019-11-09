@@ -17,27 +17,33 @@ class UCI {
     UCI(String string, int offset) { this(string); this.offset = offset;}
 
     boolean isValid() {
-        return true;
+        var col = string.substring(0, 1);
+        var row = string.substring(1, 2);
+        return searchRowIndex(row) == -1 && searchColIndex(col) == -1;
     }
 
     Position toPosition() {
         var col = string.substring(0, 1);
         var row = string.substring(1, 2);
+        return new Position(searchRowIndex(row), searchColIndex(col));
+    }
 
-        var position = new Position(0, 0);
-        for(int i = 0; i < rowIndex.length; ++i) {
+    int searchRowIndex(String row) {
+        for(int i = offset; i < rowIndex.length; ++i) {
             if (rowIndex[i].equals(row)) {
-                position.row = i - offset;
-                break;
+                return i - offset;
             }
         }
+        return -1;
+    }
+
+    int searchColIndex(String col) {
         for(int i = 0; i < colIndex.length; ++i) {
             if(colIndex[i].equals(col)) {
-                position.col = i;
-                break;
+                return i;
             }
         }
-        return position;
+        return -1;
     }
 
     @Override
