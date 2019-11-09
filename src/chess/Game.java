@@ -1,9 +1,10 @@
 package chess;
 
 import static chess.GameTestHelper.*;
-import static chess.Board.*;
-
 class Game {
+    static final Player white = new Player("White");
+    static final Player black = new Player("Black");
+    static final Player[] players = new Player[] { white, black };
     Display display;
 
     Game() {

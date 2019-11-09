@@ -1,10 +1,9 @@
 package chess;
 
+import static chess.Game.*;
+
 class Board {
     static final Empty empty = new Empty();
-    static final Player white = new Player("White");
-    static final Player black = new Player("Black");
-    static final Player[] players = new Player[] { white, black };
 
     Piece[][] pieces;
     Player currentPlayer;

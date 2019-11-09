@@ -8,7 +8,7 @@ import static org.junit.jupiter.params.provider.Arguments.*;
 
 import java.util.stream.*;
 
-import static chess.Board.*;
+import static chess.Game.*;
 import static chess.GameTestHelper.*;
 
 class BoardTest {

@@ -1,6 +1,6 @@
 package chess;
 
-import static chess.Board.*;
+import static chess.Game.*;
 
 class Knight extends Piece {
 
