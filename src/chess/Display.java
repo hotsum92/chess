@@ -45,6 +45,10 @@ class Display {
         console.show(str);
     }
 
+    void showResult(Player winner) {
+        console.show(winner + " won!");
+    }
+
     String askCommand() {
         console.show("Enter UCI (type 'help' for help):");
         return console.read();
