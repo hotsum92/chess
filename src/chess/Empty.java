@@ -2,8 +2,8 @@ package chess;
 
 class Empty extends Piece {
 
-    Empty() {
-        super(null, null, null, true);
+    Empty(Position position, Board board) {
+        super(position, null, board, true);
     }
 
     @Override
@@ -13,6 +13,14 @@ class Empty extends Piece {
 
     @Override
     public String toString() {
+        if(board.hasSelectedPiece()) {
+            var piece = board.selectedPiece;
+            if(piece.canMoveTo(position)) {
+                return "□";
+            } else {
+                return "・";
+            }
+        }
         return "・";
     }
 }

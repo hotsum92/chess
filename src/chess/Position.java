@@ -1,7 +1,5 @@
 package chess;
 
-import static chess.Board.*;
-
 class Position {
 
     int row;

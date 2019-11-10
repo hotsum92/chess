@@ -1,17 +1,14 @@
 package chess;
 
+import java.util.*;
+
 import static chess.Game.*;
 
 class Board {
-    static final Empty empty = new Empty();
 
     Piece[][] pieces;
     Player currentPlayer;
-
-    Board(Piece[][] pieces) {
-        currentPlayer = white;
-        this.pieces = pieces;
-    }
+    Piece selectedPiece;
 
     Board() {
         currentPlayer = white;
@@ -37,44 +34,44 @@ class Board {
                     new Pawn  (new Position(1, 7), black, this)
                 },
                 {
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty
+                    new Empty(new Position(2, 0), this),
+                    new Empty(new Position(2, 1), this),
+                    new Empty(new Position(2, 2), this),
+                    new Empty(new Position(2, 3), this),
+                    new Empty(new Position(2, 4), this),
+                    new Empty(new Position(2, 5), this),
+                    new Empty(new Position(2, 6), this),
+                    new Empty(new Position(2, 7), this)
                 },
                 {
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty
+                    new Empty(new Position(3, 0), this),
+                    new Empty(new Position(3, 1), this),
+                    new Empty(new Position(3, 2), this),
+                    new Empty(new Position(3, 3), this),
+                    new Empty(new Position(3, 4), this),
+                    new Empty(new Position(3, 5), this),
+                    new Empty(new Position(3, 6), this),
+                    new Empty(new Position(3, 7), this)
                 },
                 {
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty
+                    new Empty(new Position(4, 0), this),
+                    new Empty(new Position(4, 1), this),
+                    new Empty(new Position(4, 2), this),
+                    new Empty(new Position(4, 3), this),
+                    new Empty(new Position(4, 4), this),
+                    new Empty(new Position(4, 5), this),
+                    new Empty(new Position(4, 6), this),
+                    new Empty(new Position(4, 7), this)
                 },
                 {
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty,
-                    empty
+                    new Empty(new Position(5, 0), this),
+                    new Empty(new Position(5, 1), this),
+                    new Empty(new Position(5, 2), this),
+                    new Empty(new Position(5, 3), this),
+                    new Empty(new Position(5, 4), this),
+                    new Empty(new Position(5, 5), this),
+                    new Empty(new Position(5, 6), this),
+                    new Empty(new Position(5, 7), this)
                 },
                 {
                     new Pawn  (new Position(6, 0), white, this),
@@ -112,8 +109,33 @@ class Board {
         return true;
     }
 
+    boolean hasSelectedPiece() {
+        return selectedPiece != null;
+    }
+
+    void select(Position position) {
+        selectedPiece = pieceAt(position);
+    }
+
+    Position[] allPossibleMovements() {
+        ArrayList<Position> positions = new ArrayList<>();
+        for(int row = 0; row < pieces.length; ++row) {
+            for(int col = 0; col < pieces.length; ++col) {
+                if(pieceAt(new Position(row, col)).allPossibleMovements().length > 0) positions.add(new Position(row, col));
+            }
+        }
+        return positions.toArray(new Position[positions.size()]);
+    }
+
+    boolean move(Position to) {
+        if(!selectedPiece.canMoveTo(to)) return false;
+        selectedPiece.move(to);
+        selectedPiece.hasMoved = true;
+        return true;
+    }
+
     void remove(Position position) {
-        pieces[position.row][position.col] = empty;
+        pieces[position.row][position.col] = new Empty(new Position(position.row, position.col), this);
     }
 
     void replace(Position position, Piece piece) {

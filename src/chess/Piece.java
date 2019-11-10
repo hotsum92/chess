@@ -1,5 +1,7 @@
 package chess;
 
+import java.util.*;
+
 abstract class Piece {
     Board board;
     Player owner;
@@ -28,5 +30,16 @@ abstract class Piece {
         board.replace(newPosition, this);
 
         position = newPosition;
+    }
+
+    Position[] allPossibleMovements() {
+        ArrayList<Position> positions = new ArrayList<>();
+        var pieces = board.pieces;
+        for(int row = 0; row < pieces.length; ++row) {
+            for(int col = 0; col < pieces.length; ++col) {
+                if(canMoveTo(new Position(row, col))) positions.add(new Position(row, col));
+            }
+        }
+        return positions.toArray(new Position[positions.size()]);
     }
 }

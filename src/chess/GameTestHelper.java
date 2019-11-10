@@ -22,13 +22,15 @@ class GameTestHelper {
     }
 
     static Board emptyBoard() {
+        var board = new Board();
         var pieces = new Piece[5][5];
         for(int row = 0; row < 5; ++row) {
             for(int col = 0; col < 5; ++col) {
-                pieces[row][col] = empty;
+                pieces[row][col] = new Empty(new Position(row, col), board);
             }
         }
-        return new Board(pieces);
+        board.pieces = pieces;
+        return board;
     }
 
     static Board oneFriendBoardWith(Piece piece) {

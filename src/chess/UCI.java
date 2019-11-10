@@ -14,12 +14,17 @@ class UCI {
     UCI(String string) {
         this.string = string;
     }
+
     UCI(String string, int offset) { this(string); this.offset = offset;}
+
+    UCI(Position position) {
+        string =  colIndex[position.col] + rowIndex[position.row];
+    }
 
     boolean isValid() {
         var col = string.substring(0, 1);
         var row = string.substring(1, 2);
-        return searchRowIndex(row) == -1 && searchColIndex(col) == -1;
+        return searchRowIndex(row) != -1 && searchColIndex(col) != -1;
     }
 
     Position toPosition() {

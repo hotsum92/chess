@@ -14,46 +14,67 @@ public class Driver {
 
          while (true) {
              display.show(game.board);
-             var command = display.askCommand();
 
-             if("help".equals(command)) {
-                 display.showHelp();
-                 continue;
-             }
+             while (true) {
+                 display.showNewLine();
+                 var command = display.askCommand();
 
-             if("board".equals(command)) {
-                 continue;
-             }
+                 if("help".equals(command)) {
+                     display.showHelp();
+                     continue;
+                 }
 
-             if("resign".equals(command)) {
-                 game.resign();
-                 display.showResult(game.winner());
-                 return;
-             }
+                 if("board".equals(command)) {
+                     break;
+                 }
 
-             if("moves".equals(command)) {
-                 throw new UnsupportedOperationException();
-             }
-
-             if("test".equals(command)) {
-                 StartTestConsole();
-                 continue;
-             }
-
-             if(command.length() == 2) {
-                 var from = new UCI(command.substring(0, 2));
-             }
-
-             if(command.length() == 4) {
-                 var from = new UCI(command.substring(0, 2));
-                 var to   = new UCI(command.substring(2, 4));
-                 if(!(from.isValid() && to.isValid())) continue;
-                 if(!game.move(from.toPosition(), to.toPosition())) continue;
-                 if(game.judgeWin()) {
-                     display.showResult(game.winner());
+                 if("resign".equals(command)) {
+                     game.resign();
+                     display.showResultOf(game.winner());
                      return;
                  }
-                 game.togglePlayer();
+
+                 if("moves".equals(command)) {
+                     display.showAllPossibleMovementsOf(game.board);
+                     continue;
+                 }
+
+                 if("test".equals(command)) {
+                     StartTestConsole();
+                     break;
+                 }
+
+                 if(command.length() == 2) {
+                     var from = new UCI(command.substring(0, 2));
+                     if(!from.isValid()) {
+                         display.showInvalidInputError();
+                         continue;
+                     }
+                     var piece = game.board.pieceAt(from.toPosition());
+                     display.showAllPossibleMovementsOf(piece);
+                     continue;
+                 }
+
+                 if(command.length() == 4) {
+                     var from = new UCI(command.substring(0, 2));
+                     var to   = new UCI(command.substring(2, 4));
+                     if(!(from.isValid() && to.isValid())) {
+                         display.showInvalidInputError();
+                         continue;
+                     }
+                     if(!game.move(from.toPosition(), to.toPosition())) {
+                         display.showInvalidInputError();
+                         continue;
+                     }
+                     if(game.judgeWin()) {
+                         display.showResultOf(game.winner());
+                         return;
+                     }
+                     game.togglePlayer();
+                     break;
+                 }
+
+                 display.showInvalidInputError();
              }
          }
     }
@@ -71,37 +92,39 @@ public class Driver {
         hash.put("5", new Knight(center, white, board));
         hash.put("6", new Pawn(center, white, board));
 
-        if(hash.containsKey(str)) return;
+        if(!hash.containsKey(str)) return;
 
         board.pieces[center.row][center.col] = hash.get(str);
+        board.select(center);
 
         while (true) {
             display.show(board);
-            var command = display.askTestCommand();
 
-            if("board".equals(command)) {
-                continue;
-            }
+            while (true) {
+                var command = display.askTestCommand();
 
-            if("moves".equals(command)) {
-                throw new UnsupportedOperationException();
-            }
-
-            if("quit".equals(command)) {
-                return;
-            }
-
-
-            if(command.length() == 2) {
-                var from = new UCI(command.substring(0, 2), 3);
-            }
-
-            if(command.length() == 4) {
-                var from = new UCI(command.substring(0, 2), 3);
-                var to   = new UCI(command.substring(2, 4), 3);
-                if(from.isValid() && to.isValid()) {
-                    board.move(from.toPosition(), to.toPosition());
+                if("board".equals(command)) {
+                    break;
                 }
+
+                if("moves".equals(command)) {
+                    display.showAllPossibleMovementsOf(board);
+                }
+
+                if("quit".equals(command)) {
+                    return;
+                }
+
+                if(command.length() == 2) {
+                    var to = new UCI(command.substring(0, 2), 3);
+                    if(!board.move(to.toPosition())) {
+                        display.showInvalidInputError();
+                    }
+                    board.select(to.toPosition());
+                    break;
+                }
+
+                display.showInvalidInputError();
             }
         }
     }

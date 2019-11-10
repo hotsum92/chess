@@ -45,8 +45,42 @@ class Display {
         console.show(str);
     }
 
-    void showResult(Player winner) {
-        console.show(winner + " won!");
+    void showResultOf(Player winner) {
+        console.show(winner + " won!\n");
+    }
+
+    void showInvalidInputError() {
+        console.show("Invalid input, please try again\n");
+    }
+
+    void showNewLine() {
+        console.show("\n");
+    }
+
+    void showAllPossibleMovementsOf(Piece piece) {
+        console.show("Possible moves for " + new UCI(piece.position) + ":\n");
+        var positions = piece.allPossibleMovements();
+        show(positions);
+    }
+
+    void showAllPossibleMovementsOf(Board board) {
+        console.show("Possible moves for :\n");
+        var positions = board.allPossibleMovements();
+        show(positions);
+    }
+
+    void show(Position[] positions) {
+        if(positions.length < 1) {
+            console.show("{ }\n");
+            return;
+        }
+        var str = "{";
+        for(int i = 0; i < positions.length - 1; ++i) {
+            str += " " + new UCI(positions[i]) + ",";
+        }
+        str += " " + new UCI(positions[positions.length - 1]);
+        str += " }\n";
+        console.show(str);
     }
 
     String askCommand() {

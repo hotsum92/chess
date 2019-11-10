@@ -68,7 +68,7 @@ class BoardTest {
 
     static Board oneEmptyBoard(Position position) {
         var board = fullPawnBoard();
-        board.pieces[position.row][position.col] = Board.empty;
+        board.remove(position);
         return board;
     }
     static Board fullPawnBoard() {
