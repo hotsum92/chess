@@ -2,6 +2,8 @@ package chess;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DisplayTest {
@@ -25,7 +27,9 @@ class DisplayTest {
         var expected = "Enter UCI (type 'help' for help):";
         MockConsole mock = new MockConsole();
         Display display = new Display(mock);
-        mock.input = "test";
+        mock.inputList= new ArrayList<>();
+        mock.inputList.add("test");
+
         String command = display.askCommand();
         assertEquals(expected, mock.result);
         assertEquals("test", command);
