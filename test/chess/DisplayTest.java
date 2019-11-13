@@ -27,7 +27,7 @@ class DisplayTest {
         var expected = "Enter UCI (type 'help' for help):";
         MockConsole mock = new MockConsole();
         Display display = new Display(mock);
-        mock.inputList= new ArrayList<>();
+        mock.inputList = new ArrayList<>();
         mock.inputList.add("test");
 
         String command = display.askCommand();
