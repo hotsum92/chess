@@ -25,8 +25,8 @@ class GameTest {
         var originalPositionPiece = game.board.pieceAt(new Position(6, 0)); // Should be "Empty"
         var newPositionPiece = game.board.pieceAt(new Position(5, 0)); // Should be "Pawn"
 
-        assertEquals("・", originalPositionPiece.toString());
-        assertEquals("♙", newPositionPiece.toString());
+        assertTrue(originalPositionPiece instanceof Empty);
+        assertTrue(newPositionPiece instanceof Pawn);
         assertEquals("resign", mock.inputList.get(1));
     }
 }
