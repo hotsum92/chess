@@ -12,9 +12,9 @@ class Game {
     Board board;
     Display display;
 
-    Game() {
+    Game(Display display) {
         board = new Board();
-        display = new Display();
+        this.display = display;
     }
 
     void start() {
