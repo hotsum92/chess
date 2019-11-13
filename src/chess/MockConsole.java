@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 class MockConsole extends Console {
     String result;
-    String input;
     ArrayList<String> inputList;
     int count = 0;
 
@@ -15,10 +14,6 @@ class MockConsole extends Console {
 
     @Override
     String read() {
-        if(input instanceof String) {
-            return input;
-        }else {
-            return inputList.get(count++);
-        }
+        return inputList.get(count++);
     }
 }
