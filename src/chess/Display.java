@@ -6,8 +6,8 @@ class Display {
 
     Console console;
 
-    Display() {
-        console = new Console();
+    Display(Console console){
+        this.console = console;
     }
 
     void show(Board board) {
