@@ -8,7 +8,7 @@ import static chess.GameTestHelper.*;
 public class Driver {
 
      public static void main(String[] args) {
-         var game = new Game();
+         var game = new Game(new Display(new Console()));
          game.start();
     }
 }
