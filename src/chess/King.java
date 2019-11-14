@@ -8,7 +8,6 @@ class King extends Piece {
         super(position, owner, board);
     }
 
-
     @Override
     boolean canMoveTo(Position newPosition) {
         if(!super.canMoveTo(newPosition)) {
@@ -18,14 +17,14 @@ class King extends Piece {
         // TODO: implement castling
 
         return canMoveVertically(newPosition)
-                || canMoveHorizontally(newPosition);
+                || canMoveHorizontally(newPosition)
+                || canMoveDiagonally(newPosition);
     }
 
     boolean canMoveVertically(Position newPosition) {
         var piece = board.pieceAt(newPosition);
         return position.isVetical(newPosition)
                 && position.verticalDistanceTo(newPosition) == 1
-                && !board.pieceExistsBetween(position, newPosition)
                 && (board.pieceAt(newPosition).isEmpty || !owner.has(piece));
     }
 
@@ -33,10 +32,16 @@ class King extends Piece {
         var piece = board.pieceAt(newPosition);
         return position.isHotizontal(newPosition)
                 && position.horizontalDistanceTo(newPosition) == 1
-                && !board.pieceExistsBetween(position, newPosition)
                 && (board.pieceAt(newPosition).isEmpty || !owner.has(piece));
     }
 
+    boolean canMoveDiagonally(Position newPosition) {
+        var piece = board.pieceAt(newPosition);
+        return newPosition.isDiagonal(position)
+                && position.verticalDistanceTo(newPosition) == 1
+                && position.horizontalDistanceTo(newPosition) == 1
+                && (board.pieceAt(newPosition).isEmpty || !owner.has(piece));
+    }
 
     @Override
     public String toString() {
