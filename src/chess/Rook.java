@@ -20,18 +20,17 @@ class Rook extends Piece {
 
     boolean canMoveVertically(Position newPosition) {
         var piece = board.pieceAt(newPosition);
-        return position.isVetical(newPosition)
+        return newPosition.isVetical(position)
                 && !board.pieceExistsBetween(position, newPosition)
                 && (board.pieceAt(newPosition).isEmpty || !owner.has(piece));
     }
 
     boolean canMoveHorizontally(Position newPosition) {
         var piece = board.pieceAt(newPosition);
-        return position.isHotizontal(newPosition)
+        return newPosition.isHotizontal(position)
                 && !board.pieceExistsBetween(position, newPosition)
                 && (board.pieceAt(newPosition).isEmpty || !owner.has(piece));
     }
-
 
     @Override
     public String toString() {
