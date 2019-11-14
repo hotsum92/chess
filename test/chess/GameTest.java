@@ -16,9 +16,8 @@ class GameTest {
         Display display = new Display(mock);
         Game game = new Game(display);
 
-        mock.inputList = new ArrayList<>();
-        mock.inputList.add("a2a3");
-        mock.inputList.add("resign");
+        mock.add("a2a3");
+        mock.add("resign");
 
         game.start();
 
